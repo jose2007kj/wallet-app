@@ -24,6 +24,7 @@ import { LoadingModal } from './components/loading-modal/loading-modal';
 import { subscribeExchangeRates } from './core/utils/exchange-rates';
 import { updateExchangeRates } from './redux/market/actions';
 import { takeOneAndSubscribeToStore } from './redux/utils/helpers';
+// import { SOME_ENV_KEY } from './env/config';
 
 const AppContainer = createAppContainer(RootNavigation);
 
@@ -109,6 +110,7 @@ export default class App extends React.Component<{}, IState> {
     };
 
     public componentDidMount() {
+        // console.log('process', SOME_ENV_KEY, 'ss');
         AppState.addEventListener('change', this.handleAppStateChange);
 
         setTimeout(
