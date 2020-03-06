@@ -17,11 +17,15 @@ import { formatAddress } from '../../core/utils/format-address';
 import { LoadingIndicator } from '../../components/loading-indicator/loading-indicator';
 import { getBlockchain } from '../../core/blockchain/blockchain-factory';
 import { getChainId } from '../../redux/preferences/selectors';
-import { ITokenConfig, TokenType } from '../../core/blockchain/types/token';
+import {
+    ITokenConfig,
+    TokenType,
+    TokenScreenComponentType
+} from '../../core/blockchain/types/token';
 import { isValidAddress as isValidAddressETH } from '../../core/blockchain/ethereum/account';
 import { isValidAddress as isValidAddressZIL } from '../../core/blockchain/zilliqa/account';
 import { ChainIdType, Blockchain } from '../../core/blockchain/types';
-import FastImage from 'react-native-fast-image';
+import FastImage from '../../core/utils/fast-image';
 
 const GENERIC_TOKEN_LOGO = {
     uri:
@@ -196,8 +200,12 @@ export class ManageTokenComponent extends React.Component<
                     type: tokenType,
                     contractAddress: this.state.token.contractAddress,
                     decimals: Number(this.state.token.decimals),
-                    uiDecimals: 4,
-
+                    ui: {
+                        decimals: 4,
+                        tokenScreenComponent:
+                            this.state.token?.ui?.tokenScreenComponent ||
+                            TokenScreenComponentType.DEFAULT
+                    },
                     active: true,
                     order:
                         Object.values(this.props.selectedAccount.tokens).sort(
@@ -274,7 +282,7 @@ export class ManageTokenComponent extends React.Component<
                             <View style={styles.iconContainer}>
                                 <FastImage
                                     style={styles.tokenLogo}
-                                    resizeMode={FastImage.resizeMode.contain}
+                                    resizeMode="contain"
                                     source={this.state.token?.logo}
                                 />
                             </View>

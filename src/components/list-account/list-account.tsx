@@ -1,13 +1,13 @@
 import React from 'react';
-import { Text, Button } from '../../../../library';
-import { smartConnect } from '../../../../core/utils/smart-connect';
-import { withTheme, IThemeProps } from '../../../../core/theme/with-theme';
+import { Text, Button } from '../../library';
+import { smartConnect } from '../../core/utils/smart-connect';
+import { withTheme, IThemeProps } from '../../core/theme/with-theme';
 import stylesProvider from './styles';
 import { View } from 'react-native';
-import Icon from '../../../../components/icon';
-import TouchableOpacity from '../../../../library/touchable-opacity/touchable-opacity';
-import { translate } from '../../../../core/i18n';
-import FastImage from 'react-native-fast-image';
+import Icon from '../icon';
+import TouchableOpacity from '../../library/touchable-opacity/touchable-opacity';
+import { translate } from '../../core/i18n';
+import FastImage from '../../core/utils/fast-image';
 
 export interface IProps {
     label: string | JSX.Element;
@@ -38,7 +38,7 @@ export const ListAccountComponent = (
                     <FastImage
                         source={props.leftIcon}
                         style={props.styles.accountIcon}
-                        resizeMode={FastImage.resizeMode.contain}
+                        resizeMode="contain"
                     />
                 </View>
             )}

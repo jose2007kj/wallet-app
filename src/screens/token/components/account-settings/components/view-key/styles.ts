@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import { ITheme } from '../../../../core/theme/itheme';
-import { BASE_DIMENSION, BORDER_RADIUS } from '../../../../styles/dimensions';
+import { ITheme } from '../../../../../../core/theme/itheme';
+import { BASE_DIMENSION, BORDER_RADIUS } from '../../../../../../styles/dimensions';
 
 export default (theme: ITheme) =>
     StyleSheet.create({
@@ -10,17 +10,17 @@ export default (theme: ITheme) =>
         },
         keyWrapper: {
             flex: 1,
-            flexDirection: 'row',
-            alignItems: 'center',
+            justifyContent: 'center',
             paddingHorizontal: BASE_DIMENSION * 3
         },
         keyText: {
-            flex: 1,
             color: theme.colors.text,
             fontSize: 20,
             lineHeight: 25,
             textAlign: 'center',
-            letterSpacing: 0.38
+            letterSpacing: 0.38,
+            flexWrap: 'wrap',
+            flexShrink: 1
         },
         tipWrapper: {
             flexDirection: 'row',

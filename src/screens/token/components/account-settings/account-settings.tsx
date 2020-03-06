@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, Linking } from 'react-native';
+import { View, TouchableOpacity, Linking, Platform } from 'react-native';
 import stylesProvider from './styles';
 import { withTheme } from '../../../../core/theme/with-theme';
 import { IAccountState, IWalletState } from '../../../../redux/wallets/state';
@@ -8,7 +8,6 @@ import { ITheme } from '../../../../core/theme/itheme';
 import { smartConnect } from '../../../../core/utils/smart-connect';
 import { Text } from '../../../../library';
 import { translate } from '../../../../core/i18n';
-import { ViewKey } from '../view-key/view-key';
 import { getBlockchain } from '../../../../core/blockchain/blockchain-factory';
 import { ICON_SIZE } from '../../../../styles/dimensions';
 import { PasswordModal } from '../../../../components/password-modal/password-modal';
@@ -17,6 +16,7 @@ import Modal from '../../../../library/modal/modal';
 import { ChainIdType } from '../../../../core/blockchain/types';
 import { LoadingIndicator } from '../../../../components/loading-indicator/loading-indicator';
 import { WalletType } from '../../../../core/wallet/types';
+import { ViewKey } from './components/view-key/view-key';
 
 export interface IProps {
     styles: ReturnType<typeof stylesProvider>;
@@ -160,7 +160,7 @@ export class AccountSettingsComponent extends React.Component<IProps & IExternal
                             )
                         ) : (
                             <View style={styles.contentContainer}>
-                                {this.props.wallet.type !== WalletType.HW && (
+                                {this.props.wallet.type !== WalletType.HW && Platform.OS !== 'web' && (
                                     <TouchableOpacity
                                         testID="private-key"
                                         style={styles.rowContainer}
